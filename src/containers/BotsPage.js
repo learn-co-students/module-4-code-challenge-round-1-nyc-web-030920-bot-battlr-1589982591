@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BotCollection from "../containers/BotCollection"
 import YourBotArmy from "../containers/YourBotArmy"
+import SortBar from "../components/SortBar"
 
 const BaseUrl = 'http://localhost:6001/bots'
 
@@ -8,7 +9,12 @@ class BotsPage extends Component {
   //start here with your code for step one
   state ={
     bots: [],
-    army: []
+    army: [],
+    support: false,
+    medic: false,
+    witch: false,
+    defender: false,
+    assault: false
   }
   componentDidMount() {
     this.fetchAllBots()
@@ -37,9 +43,16 @@ class BotsPage extends Component {
     .then(this.fetchAllBots())
     .then(this.setState({army: updatedArmy}))
   }
+  //BONUS ______________ BONUS
+  handleFilter =(e) => {
+    console.log(e.target.name, !e.target.value)
+    this.setState({[e.target.name]: !e.target.value}, () => console.log(this.state))
+  }
   render() {
+    const {medic, assault, defender, witch, support} = this.state
     return <div>
       {<YourBotArmy handleDischarge={this.handleDischarge} handleArmyBotClick={this.handleArmyBotClick} army={this.state.army}/>}
+      {<SortBar medic={medic} assault={assault} defender={defender} witch={witch} support={support} handleFilter = {this.handleFilter}/>}
     {<BotCollection handleDischarge={this.handleDischarge} handleBotClick={this.handleBotClick} bots={this.state.bots} /> }
     </div>;
   }
