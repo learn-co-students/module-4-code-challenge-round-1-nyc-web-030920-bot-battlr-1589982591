@@ -7,7 +7,7 @@ import BotCard from "../components/BotCard"
       <div className="ui segment inverted olive bot-army">
         <div className="ui five column grid">
           <div className="row bot-army-row">
-            {this.props.bots.map(bot => <BotCard bot={bot} key={bot.id} />)}
+            {props.bots.map(bot => <BotCard bot={bot} key={bot.id} />)}
             Your Bot Army
           </div>
         </div>
