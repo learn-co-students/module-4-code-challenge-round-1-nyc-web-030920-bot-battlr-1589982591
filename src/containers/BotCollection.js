@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import BotCard from "../components/BotCard"
 
 class BotCollection extends Component {
-  //your code here
+  state = {
+    clicked: false
+  }
+  //Renders All bots.
   renderBots = () => {
     return this.props.bots.map((bot, index) => <BotCard handleDischarge={this.props.handleDischarge} handleBotClick={this.props.handleBotClick} key={index} bot={bot} /> )
   }

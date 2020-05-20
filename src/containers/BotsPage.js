@@ -13,22 +13,24 @@ class BotsPage extends Component {
   componentDidMount() {
     this.fetchAllBots()
   }
+  //populats state.bots with db data
   fetchAllBots = () => {
     fetch(BaseUrl)
     .then(res=> res.json())
     .then((bots) => this.setState({bots}))
   }
+  //Handles adding bots to army when clicked inside botCollection
   handleBotClick = ( id) => {
     const addToArmy = this.state.bots.find(bot => bot.id === id)
     this.state.army.find(bot => bot.id === id) ?  null : this.setState({army: [...this.state.army, addToArmy]})
   }
-
+  //Handles removing clicked bot form army
   handleArmyBotClick = (id) => {
     const updatedArmy = this.state.army.filter(bot => bot.id !== id)
     this.setState({army: updatedArmy}, () => console.log(this.state.army))
   }
+  //handles deleting a bot from database, as well as updating state to reflect this
   handleDischarge = (id) => {
-    // const delteBot = this.state.bots.find(bot => bot.id === id)
     const updatedArmy = this.state.army.filter(bot => bot.id !== id)
     fetch(BaseUrl+`/${id}`, {method: 'delete'})
     .then(res => res.json())
