@@ -4,7 +4,7 @@ import BotCard from "../components/BotCard"
 class BotCollection extends Component {
   //your code here
   renderBots = () => {
-    return this.props.bots.map((bot, index) => <BotCard handleBotClick={this.props.handleBotClick} key={index} bot={bot} /> )
+    return this.props.bots.map((bot, index) => <BotCard handleDischarge={this.props.handleDischarge} handleBotClick={this.props.handleBotClick} key={index} bot={bot} /> )
   }
 
   render() {
